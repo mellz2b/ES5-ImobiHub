@@ -1,0 +1,12 @@
+<svg width="420" height="120" viewBox="0 0 420 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="420" height="120" rx="18" fill="white"/>
+  <g transform="translate(16,16)">
+    <path d="M22 60V35L50 14L78 35V60" stroke="#0C2F5D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14 36L50 8L86 36" stroke="#16467E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="82" cy="27" r="9" stroke="#16467E" stroke-width="5"/>
+    <path d="M82 18V12M82 42V36M73 27H67M97 27H91M88.5 20.5L92.7 16.3M75.5 33.5L71.3 37.7M88.5 33.5L92.7 37.7M75.5 20.5L71.3 16.3" stroke="#16467E" stroke-width="3" stroke-linecap="round"/>
+    <rect x="35" y="44" width="14" height="16" rx="2" stroke="#0C2F5D" stroke-width="5"/>
+    <rect x="54" y="44" width="14" height="10" rx="2" stroke="#0C2F5D" stroke-width="5"/>
+  </g>
+  <text x="124" y="66" fill="#0C2F5D" font-family="Segoe UI, Arial, sans-serif" font-size="50" font-weight="700">ImobiHub</text>
+</svg>
