@@ -14,7 +14,7 @@ O ImobiHub é uma plataforma web de gerenciamento imobiliário que permite a adm
 ## Arquitetura e Tech Stack
 O sistema segue uma arquitetura web simples com separação entre frontend e backend:
 
-- **Frontend**: HTML e CSS  
+- **Frontend**: PHP e CSS  
 - **Backend**: PHP  
 - **Banco de Dados**: MySQL  
 
