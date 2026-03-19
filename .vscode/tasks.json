@@ -2,13 +2,18 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Dev Server",
+			"label": "PHP Dev Server",
 			"type": "shell",
-			"command": "npm",
+			"command": "php",
 			"args": [
-				"run",
-				"dev"
+				"-S",
+				"localhost:8000",
+				"-t",
+				"public"
 			],
+			"options": {
+				"cwd": "${workspaceFolder}/php-app"
+			},
 			"isBackground": true,
 			"group": "build"
 		}
