@@ -26,6 +26,8 @@ type DraftProperty = {
   sustainabilityTag: string;
 };
 
+type EditDraft = DraftProperty;
+
 const emptyDraft: DraftProperty = {
   title: "",
   dealType: "comprar",
@@ -50,10 +52,7 @@ function toCurrency(value: number) {
 
 function formatDealType(value: DealType) {
   const labels: Record<DealType, string> = {
-    alugar: "Alugar",
     comprar: "Comprar",
-    "imovel-novo": "Imovel novo",
-    leilao: "Leilao",
   };
   return labels[value];
 }
@@ -81,6 +80,8 @@ export default function DashboardPage() {
   const [properties, setProperties] = useState<Property[]>(() => getInitialProperties());
   const [draft, setDraft] = useState<DraftProperty>(emptyDraft);
   const [photoFiles, setPhotoFiles] = useState<File[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editDraft, setEditDraft] = useState<EditDraft | null>(null);
 
   useEffect(() => {
     setProperties(loadProperties());
@@ -153,6 +154,79 @@ export default function DashboardPage() {
     updateAndPersist(next);
   };
 
+  const startEdit = (item: Property) => {
+    setEditingId(item.id);
+    setEditDraft({
+      title: item.title,
+      dealType: "comprar",
+      propertyType: item.propertyType,
+      city: item.city,
+      neighborhood: item.neighborhood,
+      price: String(item.price),
+      area: String(item.area),
+      bedrooms: String(item.bedrooms),
+      bathrooms: String(item.bathrooms),
+      description: item.description,
+      sustainabilityTag: item.sustainabilityTag,
+    });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditDraft(null);
+  };
+
+  const handleEditInputChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
+    const { name, value } = event.target;
+    setEditDraft((prev) => (prev ? { ...prev, [name]: value } : prev));
+  };
+
+  const saveEdit = (id: string) => {
+    if (!editDraft) {
+      return;
+    }
+
+    const next = properties.map((item) => {
+      if (item.id !== id) {
+        return item;
+      }
+
+      return {
+        ...item,
+        title: editDraft.title,
+        dealType: "comprar",
+        propertyType: editDraft.propertyType,
+        city: editDraft.city,
+        neighborhood: editDraft.neighborhood,
+        price: Number(editDraft.price),
+        area: Number(editDraft.area),
+        bedrooms: Number(editDraft.bedrooms),
+        bathrooms: Number(editDraft.bathrooms),
+        description: editDraft.description,
+        sustainabilityTag: editDraft.sustainabilityTag,
+      };
+    });
+
+    updateAndPersist(next);
+    cancelEdit();
+  };
+
+  const deleteProperty = (id: string) => {
+    const shouldDelete = window.confirm("Deseja excluir este anuncio?");
+    if (!shouldDelete) {
+      return;
+    }
+
+    const next = properties.filter((item) => item.id !== id);
+    updateAndPersist(next);
+
+    if (editingId === id) {
+      cancelEdit();
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_18%_15%,#e5eefb_0%,#f6f9ff_44%,#fdfefe_100%)] px-5 py-8 text-[#091f44] md:px-10">
       <div className="mx-auto max-w-6xl space-y-8">
@@ -211,10 +285,7 @@ export default function DashboardPage() {
                 onChange={handleInputChange}
                 className="w-full rounded-xl border border-[#bfd0e8] px-4 py-3"
               >
-                <option value="alugar">Alugar</option>
                 <option value="comprar">Comprar</option>
-                <option value="imovel-novo">Imovel novo</option>
-                <option value="leilao">Leilao</option>
               </select>
             </label>
             <label className="text-sm text-[#42597a]">
@@ -288,6 +359,78 @@ export default function DashboardPage() {
                   {item.sold ? "Marcar como disponivel" : "Marcar como vendido"}
                 </button>
               </div>
+
+              <div className="mt-3 flex flex-wrap gap-2">
+                {editingId === item.id ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => saveEdit(item.id)}
+                      className="rounded-xl bg-[#0c2f5d] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#16467e]"
+                    >
+                      Salvar edicao
+                    </button>
+                    <button
+                      type="button"
+                      onClick={cancelEdit}
+                      className="rounded-xl border border-[#aac0df] px-3 py-2 text-sm font-medium text-[#0c2f5d]"
+                    >
+                      Cancelar
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => startEdit(item)}
+                    className="rounded-xl border border-[#0c2f5d] px-3 py-2 text-sm font-medium text-[#0c2f5d] transition hover:bg-[#0c2f5d] hover:text-white"
+                  >
+                    Editar anuncio
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => deleteProperty(item.id)}
+                  className="rounded-xl border border-[#b33939] px-3 py-2 text-sm font-medium text-[#b33939] transition hover:bg-[#b33939] hover:text-white"
+                >
+                  Excluir anuncio
+                </button>
+              </div>
+
+              {editingId === item.id && editDraft && (
+                <form
+                  className="mt-4 grid gap-3 md:grid-cols-2"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    saveEdit(item.id);
+                  }}
+                >
+                  <input required name="title" value={editDraft.title} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Titulo do imovel" />
+                  <label className="text-sm text-[#42597a]">
+                    <span className="mb-1 block">Tipo de negocio</span>
+                    <select name="dealType" value={editDraft.dealType} onChange={handleEditInputChange} className="w-full rounded-xl border border-[#bfd0e8] px-4 py-3">
+                      <option value="comprar">Comprar</option>
+                    </select>
+                  </label>
+                  <label className="text-sm text-[#42597a]">
+                    <span className="mb-1 block">Tipo de imovel</span>
+                    <select name="propertyType" value={editDraft.propertyType} onChange={handleEditInputChange} className="w-full rounded-xl border border-[#bfd0e8] px-4 py-3">
+                      <option value="apartamento">Apartamento</option>
+                      <option value="casa">Casa</option>
+                      <option value="imovel-comercial">Imovel comercial</option>
+                      <option value="terreno">Terreno</option>
+                    </select>
+                  </label>
+                  <input required name="city" value={editDraft.city} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Cidade" />
+                  <input required name="neighborhood" value={editDraft.neighborhood} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Bairro" />
+                  <input required name="price" type="number" min="1" value={editDraft.price} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Preco" />
+                  <input required name="area" type="number" min="1" value={editDraft.area} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Area (m2)" />
+                  <input required name="bedrooms" type="number" min="0" value={editDraft.bedrooms} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Quartos" />
+                  <input required name="bathrooms" type="number" min="0" value={editDraft.bathrooms} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Banheiros" />
+                  <input required name="sustainabilityTag" value={editDraft.sustainabilityTag} onChange={handleEditInputChange} className="rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Tag de sustentabilidade" />
+                  <textarea required name="description" value={editDraft.description} onChange={handleEditInputChange} className="md:col-span-2 min-h-28 rounded-xl border border-[#bfd0e8] px-4 py-3" placeholder="Descricao" />
+                </form>
+              )}
             </article>
           ))}
         </section>

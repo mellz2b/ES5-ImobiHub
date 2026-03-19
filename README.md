@@ -34,3 +34,37 @@ Aplicacao disponivel em `http://localhost:3000`.
 npm run build
 npm run start
 ```
+
+## Versao PHP (estrutura limpa e organizada)
+
+Tambem foi criada uma versao em PHP em `php-app/`, com:
+
+- Catalogo publico com filtros e busca
+- Dashboard de gestao com cadastro de imovel
+- Edicao de preco por anuncio
+- Upload de fotos para pasta local
+- Alternancia de status vendido/disponivel
+- Persistencia em SQLite
+
+### Estrutura principal
+
+- `php-app/public/index.php`: catalogo publico
+- `php-app/public/dashboard.php`: painel administrativo
+- `php-app/src/PropertyRepository.php`: regras de acesso a dados
+- `php-app/src/Database.php`: conexao e schema
+- `php-app/src/helpers.php`: funcoes utilitarias
+
+### Como executar
+
+1. Instale PHP 8.1+ no sistema.
+2. No terminal, rode:
+
+```bash
+cd php-app
+php -S localhost:8000 -t public
+```
+
+3. Acesse:
+
+- `http://localhost:8000/index.php`
+- `http://localhost:8000/dashboard.php`

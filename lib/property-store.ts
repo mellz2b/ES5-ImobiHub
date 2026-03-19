@@ -1,4 +1,4 @@
-export type DealType = "alugar" | "comprar" | "imovel-novo" | "leilao";
+export type DealType = "comprar";
 
 export type PropertyType =
   | "apartamento"
@@ -48,7 +48,7 @@ const initialProperties: Property[] = [
   {
     id: "casa-bairro-002",
     title: "Casa familiar com quintal permeavel",
-    dealType: "alugar",
+    dealType: "comprar",
     propertyType: "casa",
     city: "Curitiba",
     neighborhood: "Bacacheri",

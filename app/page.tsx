@@ -23,10 +23,7 @@ type SortMode = "default" | "latest" | "affordable";
 
 function formatDealType(value: DealType) {
   const labels: Record<DealType, string> = {
-    alugar: "Alugar",
     comprar: "Comprar",
-    "imovel-novo": "Imovel novo",
-    leilao: "Leilao",
   };
   return labels[value];
 }
@@ -127,16 +124,12 @@ export default function HomePage() {
 
           <div className="mt-5 rounded-2xl border border-[#d1deef] bg-[#f9fbff] p-3">
             <div className="flex flex-wrap gap-2">
-              {(["alugar", "comprar", "imovel-novo", "leilao"] as DealType[]).map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setDealType(item)}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${dealType === item ? "bg-[#e1ebfb] text-[#0f3f75]" : "bg-white text-[#42597a] hover:bg-[#eef4fd]"}`}
-                >
-                  {formatDealType(item)}
-                </button>
-              ))}
+              <button
+                type="button"
+                className="rounded-xl bg-[#e1ebfb] px-4 py-2 text-sm font-semibold text-[#0f3f75]"
+              >
+                Comprar
+              </button>
             </div>
 
             <div className="mt-3 grid gap-3 md:grid-cols-[220px_1fr_140px]">
@@ -185,8 +178,8 @@ export default function HomePage() {
               <p className="mt-1 text-sm text-[#4a6183]">Coberturas que protegem proprietario e inquilino durante toda a locacao.</p>
             </article>
             <article className="rounded-2xl border border-[#d3e0f2] bg-white p-4">
-              <h2 className="text-xl font-semibold">Guia para alugar</h2>
-              <p className="mt-1 text-sm text-[#4a6183]">Checklist pratico para decidir quando alugar e como avaliar o contrato.</p>
+              <h2 className="text-xl font-semibold">Guia para comprar</h2>
+              <p className="mt-1 text-sm text-[#4a6183]">Checklist pratico para avaliar documentacao, financiamento e custo total de aquisicao.</p>
             </article>
             <article className="rounded-2xl border border-[#d3e0f2] bg-white p-4">
               <h2 className="text-xl font-semibold">Fale conosco</h2>
@@ -201,7 +194,7 @@ export default function HomePage() {
             <button type="button" onClick={() => applySuggestion("default", "comprar", "apartamento")} className="rounded-2xl border border-[#d3e0f2] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">Apartamentos em alta mais procurados</button>
             <button type="button" onClick={() => applySuggestion("latest", "comprar", "todos")} className="rounded-2xl border border-[#d3e0f2] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">Imoveis que acabaram de chegar</button>
             <button type="button" onClick={() => applySuggestion("affordable", "comprar", "todos")} className="rounded-2xl border border-[#d3e0f2] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">Oportunidade imperdivel</button>
-            <button type="button" onClick={() => applySuggestion("latest", "alugar", "apartamento")} className="rounded-2xl border border-[#d3e0f2] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">Novos apartamentos para alugar</button>
+            <button type="button" onClick={() => applySuggestion("latest", "comprar", "apartamento")} className="rounded-2xl border border-[#d3e0f2] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">Novos apartamentos para comprar</button>
           </div>
         </section>
 
