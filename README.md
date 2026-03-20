@@ -1,80 +1,140 @@
-# ImobiHub - PHP
+# ImobiHub
 
-Aplicacao web para imobiliaria com foco no ODS 11 (Cidades e Comunidades Sustentaveis), implementada em PHP + SQLite.
+## Descrição
+O ImobiHub é uma aplicação web de gerenciamento imobiliário desenvolvida para facilitar a administração e divulgação de imóveis disponíveis para venda ou locação. A plataforma permite que administradores gerenciem anúncios por meio de um painel (dashboard), enquanto os usuários podem visualizar os imóveis em um catálogo público atualizado em tempo real. O projeto está alinhado ao **ODS 11 - Cidades e Comunidades Sustentáveis**, contribuindo para a organização e acesso à informação sobre moradia.
 
-## Modulos
+---
 
-- Catalogo publico em `php-app/public/index.php`
-- Dashboard de gestao em `php-app/public/dashboard.php`
+## Objetivo
+Desenvolver um sistema funcional de gerenciamento imobiliário, permitindo cadastro, edição e visualização de imóveis de forma dinâmica e organizada.
 
-## Funcionalidades
+---
 
-- Cadastro de anuncio com upload de fotos
-- Edicao de anuncio cadastrado
-- Edicao rapida de preco
-- Exclusao de anuncio
-- Alternancia de status vendido/disponivel
-- Filtros no catalogo (tipo, busca, ordenacao e vendidos)
+## ODS
+ODS 11 - Cidades e Comunidades Sustentáveis
 
-## Persistencia
+---
 
-- Banco SQLite em `php-app/data/imobihub.sqlite`
-- Uploads em `php-app/public/uploads/`
+## Tecnologias Utilizadas
+- **Backend:** PHP 8.1+
+- **Banco de Dados:** SQLite
+- **Frontend:** HTML + CSS
+- **Servidor local:** PHP built-in server
 
-## Estrutura principal
+---
 
-- `php-app/public/index.php`: catalogo publico
-- `php-app/public/dashboard.php`: painel administrativo
-- `php-app/public/styles.css`: estilos globais
-- `php-app/src/PropertyRepository.php`: regras de acesso a dados
-- `php-app/src/Database.php`: conexao e schema
-- `php-app/src/helpers.php`: funcoes utilitarias
-- `php-app/config/config.php`: configuracoes da aplicacao
+## Módulos
+- Catálogo público (`index.php`)
+- Dashboard administrativo (`dashboard.php`)
 
-## Executar localmente
+---
 
-1. Instale PHP 8.1+.
-2. Rode no terminal:
+## ⚙️ Funcionalidades
+- Cadastro de anúncio com upload de fotos  
+- Edição de anúncio cadastrado  
+- Edição rápida de preço  
+- Exclusão de anúncio  
+- Alternância de status (vendido/disponível)  
+- Filtros no catálogo (tipo, busca, ordenação e vendidos)  
+
+---
+
+## Persistência de Dados
+- Banco: `php-app/data/imobihub.sqlite`  
+- Uploads: `php-app/public/uploads/`
+
+---
+
+## Estrutura do Projeto
+
+php-app/
+│
+├── public/
+│ ├── index.php # Catálogo público
+│ ├── dashboard.php # Painel administrativo
+│ ├── styles.css # Estilos globais
+│ └── uploads/ # Imagens dos imóveis
+│
+├── src/
+│ ├── PropertyRepository.php # Regras de acesso a dados
+│ ├── Database.php # Conexão e schema
+│ └── helpers.php # Funções utilitárias
+│
+├── config/
+│ └── config.php # Configurações da aplicação
+│
+├── data/
+│ └── imobihub.sqlite # Banco de dados
+│
+└── bootstrap.php # Inicialização da aplicação
+
+
+---
+
+## Como Executar o Projeto
+1. Instale o PHP 8.1 ou superior  
+2. No terminal:
 
 ```bash
 cd php-app
 php -S localhost:8000 -t public
-```
 
-3. Acesse:
+Acesse:
 
-- `http://localhost:8000/`
-- `http://localhost:8000/dashboard.php`
+http://localhost:8000/
 
-## Guia rapido para contribuicao
+http://localhost:8000/dashboard.php
 
-### Organizacao do codigo
+## Arquitetura
 
-- Camada HTTP/UI: `php-app/public/*.php`
-- Camada de dados: `php-app/src/PropertyRepository.php`
-- Infraestrutura de banco: `php-app/src/Database.php`
-- Utilitarios comuns: `php-app/src/helpers.php`
-- Bootstrap da aplicacao: `php-app/bootstrap.php`
+O sistema segue uma arquitetura simples com separação de responsabilidades:
 
-### Boas praticas adotadas no projeto
+Camada de apresentação: public/*.php
 
-- Sempre usar `declare(strict_types=1);` nos arquivos PHP.
-- Validar entrada de formulario antes de chamar o repositorio.
-- Usar bind de parametros no PDO (evitar SQL interpolada).
-- Escapar saida HTML com `e()` para prevenir XSS.
-- Manter mensagens de erro simples para o usuario e detalhamento no codigo.
+Camada de dados: src/PropertyRepository.php
 
-### Fluxo de desenvolvimento sugerido
+Infraestrutura: src/Database.php
 
-1. Criar branch de feature.
-2. Rodar servidor local e testar catalogo e dashboard.
-3. Validar sintaxe:
+Utilitários: src/helpers.php
 
-```bash
+## Boas Práticas
+
+Uso de declare(strict_types=1);
+
+Validação de dados de entrada
+
+Uso de PDO com parâmetros (evita SQL Injection)
+
+Escape de saída HTML (proteção contra XSS)
+
+Separação de responsabilidades no código
+
+## Fluxo de Desenvolvimento
+
+Criar branch de feature
+
+Rodar servidor local
+
+Testar catálogo e dashboard
+
+Validar sintaxe:
+
 php -l php-app/public/index.php
 php -l php-app/public/dashboard.php
 php -l php-app/src/PropertyRepository.php
-```
 
-4. Commit com mensagem descritiva.
-5. Abrir PR no GitHub com resumo da mudanca e riscos.
+Commit com mensagem descritiva
+
+Abrir Pull Request no GitHub
+
+## Equipe
+
+Alexandre Rodrigues Ramos – 0021171
+
+Fellipe Ferreira Gomes – 0021345
+
+Icaro Kaic Bernardes Rocha – 0021391
+
+Raycca Mell dos Santos – 0020850 (Gerente do Projeto)
+
+Wallyson Freitas Alves – 0020879
