@@ -1,29 +1,80 @@
-# ImobiHub
-## Visão Geral
-O ImobiHub é uma plataforma web de gerenciamento imobiliário que permite a administração e divulgação de imóveis de forma simples e eficiente. O sistema conta com um painel administrativo (dashboard) onde é possível cadastrar, editar e remover imóveis, e um site público onde essas informações são exibidas automaticamente.
+# ImobiHub - PHP
 
+Aplicacao web para imobiliaria com foco no ODS 11 (Cidades e Comunidades Sustentaveis), implementada em PHP + SQLite.
 
-## Principais Módulos
-- **Autenticação**: login do administrador  
-- **Gerenciamento de Imóveis**: cadastro, edição e exclusão  
-- **Upload de Imagens**: envio de fotos dos imóveis  
-- **Listagem de Imóveis**: exibição no site público  
-- **Dashboard Administrativo**: controle geral do sistema  
+## Modulos
 
+- Catalogo publico em `php-app/public/index.php`
+- Dashboard de gestao em `php-app/public/dashboard.php`
 
-## Arquitetura e Tech Stack
-O sistema segue uma arquitetura web simples com separação entre frontend e backend:
+## Funcionalidades
 
-- **Frontend**: PHP e CSS  
-- **Backend**: PHP  
-- **Banco de Dados**: MySQL  
+- Cadastro de anuncio com upload de fotos
+- Edicao de anuncio cadastrado
+- Edicao rapida de preco
+- Exclusao de anuncio
+- Alternancia de status vendido/disponivel
+- Filtros no catalogo (tipo, busca, ordenacao e vendidos)
 
-O PHP será responsável pela lógica do sistema, processamento de dados e comunicação com o banco de dados, enquanto o MySQL armazenará as informações dos imóveis.
+## Persistencia
 
+- Banco SQLite em `php-app/data/imobihub.sqlite`
+- Uploads em `php-app/public/uploads/`
 
-## Equipe Principal
-- Alexandre Rodrigues Ramos – 0021171  
-- Fellipe Ferreira Gomes – 0021345  
-- Icaro Kaic Bernardes Rocha – 0021391  
-- Raycca Mell dos Santos – 0020850 (**Gerente do Projeto**)  
-- Wallyson Freitas Alves – 0020879  
+## Estrutura principal
+
+- `php-app/public/index.php`: catalogo publico
+- `php-app/public/dashboard.php`: painel administrativo
+- `php-app/public/styles.css`: estilos globais
+- `php-app/src/PropertyRepository.php`: regras de acesso a dados
+- `php-app/src/Database.php`: conexao e schema
+- `php-app/src/helpers.php`: funcoes utilitarias
+- `php-app/config/config.php`: configuracoes da aplicacao
+
+## Executar localmente
+
+1. Instale PHP 8.1+.
+2. Rode no terminal:
+
+```bash
+cd php-app
+php -S localhost:8000 -t public
+```
+
+3. Acesse:
+
+- `http://localhost:8000/`
+- `http://localhost:8000/dashboard.php`
+
+## Guia rapido para contribuicao
+
+### Organizacao do codigo
+
+- Camada HTTP/UI: `php-app/public/*.php`
+- Camada de dados: `php-app/src/PropertyRepository.php`
+- Infraestrutura de banco: `php-app/src/Database.php`
+- Utilitarios comuns: `php-app/src/helpers.php`
+- Bootstrap da aplicacao: `php-app/bootstrap.php`
+
+### Boas praticas adotadas no projeto
+
+- Sempre usar `declare(strict_types=1);` nos arquivos PHP.
+- Validar entrada de formulario antes de chamar o repositorio.
+- Usar bind de parametros no PDO (evitar SQL interpolada).
+- Escapar saida HTML com `e()` para prevenir XSS.
+- Manter mensagens de erro simples para o usuario e detalhamento no codigo.
+
+### Fluxo de desenvolvimento sugerido
+
+1. Criar branch de feature.
+2. Rodar servidor local e testar catalogo e dashboard.
+3. Validar sintaxe:
+
+```bash
+php -l php-app/public/index.php
+php -l php-app/public/dashboard.php
+php -l php-app/src/PropertyRepository.php
+```
+
+4. Commit com mensagem descritiva.
+5. Abrir PR no GitHub com resumo da mudanca e riscos.
