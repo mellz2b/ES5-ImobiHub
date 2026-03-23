@@ -3,17 +3,14 @@
 ## Descrição
 O ImobiHub é uma aplicação web de gerenciamento imobiliário desenvolvida para facilitar a administração e divulgação de imóveis disponíveis para venda ou locação. A plataforma permite que administradores gerenciem anúncios por meio de um painel (dashboard), enquanto os usuários podem visualizar os imóveis em um catálogo público atualizado em tempo real. O projeto está alinhado ao **ODS 11 - Cidades e Comunidades Sustentáveis**, contribuindo para a organização e acesso à informação sobre moradia.
 
----
 
 ## Objetivo
 Desenvolver um sistema funcional de gerenciamento imobiliário, permitindo cadastro, edição e visualização de imóveis de forma dinâmica e organizada.
 
----
 
 ## ODS
 ODS 11 - Cidades e Comunidades Sustentáveis
 
----
 
 ## Tecnologias Utilizadas
 - **Backend:** PHP 8.1+
@@ -21,32 +18,27 @@ ODS 11 - Cidades e Comunidades Sustentáveis
 - **Frontend:** HTML + CSS
 - **Servidor local:** PHP built-in server
 
----
 
 ## Módulos
 - Catálogo público (`index.php`)
 - Dashboard administrativo (`dashboard.php`)
 
----
 
 ## Funcionalidades
-- Cadastro de anúncio com upload de fotos  
+- Cadastro de anúncio com upload de fotos 
 - Edição de anúncio cadastrado  
 - Edição rápida de preço  
 - Exclusão de anúncio  
 - Alternância de status (vendido/disponível)  
 - Filtros no catálogo (tipo, busca, ordenação e vendidos)  
 
----
 
 ## Persistência de Dados
 - Banco: `php-app/data/imobihub.sqlite`  
 - Uploads: `php-app/public/uploads/`
 
----
 
 ## Estrutura do Projeto
-
 php-app/
 │
 ├── public/
@@ -68,8 +60,6 @@ php-app/
 │
 └── bootstrap.php # Inicialização da aplicação
 
-
----
 
 ## Como Executar o Projeto
 1. Instale o PHP 8.1 ou superior  
