@@ -15,9 +15,6 @@ ODS 11 - Cidades e Comunidades Sustentáveis
 - **Frontend:** HTML + CSS
 - **Servidor local:** PHP built-in server
 
-# Módulos
-- Catálogo público (`index.php`)
-- Dashboard administrativo (`dashboard.php`)
 
 # Funcionalidades
 - Cadastro de anúncio com upload de fotos 
@@ -27,71 +24,7 @@ ODS 11 - Cidades e Comunidades Sustentáveis
 - Alternância de status (vendido/disponível)  
 - Filtros no catálogo (tipo, busca, ordenação e vendidos)  
 
-# Persistência de Dados
-- Banco: `php-app/data/imobihub.sqlite`  
-- Uploads: `php-app/public/uploads/`
 
-# Estrutura do Projeto
-php-app/
-│
-├── public/
-│ ├── index.php # Catálogo público
-│ ├── dashboard.php # Painel administrativo
-│ ├── styles.css # Estilos globais
-│ └── uploads/ # Imagens dos imóveis
-│
-├── src/
-│ ├── PropertyRepository.php # Regras de acesso a dados
-│ ├── Database.php # Conexão e schema
-│ └── helpers.php # Funções utilitárias
-│
-├── config/
-│ └── config.php # Configurações da aplicação
-│
-├── data/
-│ └── imobihub.sqlite # Banco de dados
-│
-└── bootstrap.php # Inicialização da aplicação
-
-# Como Executar o Projeto
-1. Instale o PHP 8.1 ou superior  
-2. No terminal:
-
-```bash
-cd php-app
-php -S localhost:8000 -t public
-```
-
-Acesse:
-http://localhost:8000/
-http://localhost:8000/dashboard.php
-
-# Arquitetura
-O sistema segue uma arquitetura simples com separação de responsabilidades:
-- Camada de apresentação: public/*.php
-- Camada de dados: src/PropertyRepository.php
-- Infraestrutura: src/Database.php
-- Utilitários: src/helpers.php
-
-# Boas Práticas
-- Uso de declare(strict_types=1);
-- Validação de dados de entrada
-- Uso de PDO com parâmetros (evita SQL Injection)
-- Escape de saída HTML (proteção contra XSS)
-- Separação de responsabilidades no código
-
-# Fluxo de Desenvolvimento
-- Criar branch de feature
-- Rodar servidor local
-- Testar catálogo e dashboard
-- Validar sintaxe:
-
-php -l php-app/public/index.php
-php -l php-app/public/dashboard.php
-php -l php-app/src/PropertyRepository.php
-
-- Commit com mensagem descritiva
-- Abrir Pull Request no GitHub
 
 # Equipe
 
