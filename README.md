@@ -31,5 +31,5 @@ ODS 11 - Cidades e Comunidades Sustentáveis
 Alexandre Rodrigues Ramos – 0021171
 Fellipe Ferreira Gomes – 0021345
 Icaro Kaic Bernardes Rocha – 0021391
-Raycca Mell dos Santos – 0020850 (Gerente do Projeto)
+Raycca Mell dos Santos – 0020850
 Wallyson Freitas Alves – 0020879
