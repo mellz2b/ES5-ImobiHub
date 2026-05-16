@@ -44,3 +44,15 @@ next-env.d.ts
 php-app/data/*.sqlite
 php-app/data/*.sqlite-*
 !php-app/data/.gitkeep
+
+# uploads de imagens geradas pelo usuário
+php-app/public/uploads/*
+!php-app/public/uploads/.gitkeep
+
+# IDEs
+.idea/
+*.swp
+*~
+
+# OS
+Thumbs.db

@@ -1,16 +1,9 @@
-<?php
-/**
- * index.php — Catálogo público de imóveis
- * Página principal servida pelo servidor PHP.
- */
-$pageTitle = 'ImobiHub — Catálogo de Imóveis';
-?>
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= htmlspecialchars($pageTitle) ?></title>
+  <title>ImobiHub — Catálogo de Imóveis</title>
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
@@ -24,12 +17,12 @@ $pageTitle = 'ImobiHub — Catálogo de Imóveis';
         </svg>
         <div class="brand-text">
           <span class="brand-name">ImobiHub</span>
-          <span class="brand-sub">Conectando Im&oacute;veis &amp; Neg&oacute;cios</span>
+          <span class="brand-sub">Conectando Imóveis &amp; Negócios</span>
         </div>
       </a>
-      <a class="btn btn-dark btn-sm" href="/login.php">
+      <a class="btn btn-dark btn-sm" href="/login.html">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7-7 7 7"/></svg>
-        Anunciar im&oacute;vel
+        Anunciar imóvel
       </a>
     </div>
   </header>
@@ -41,7 +34,7 @@ $pageTitle = 'ImobiHub — Catálogo de Imóveis';
         <div class="filters-bar">
 
           <label>
-            Neg&oacute;cio
+            Negócio
             <div class="select-wrap">
               <select name="dealType">
                 <option value="todos">Todos</option>
@@ -68,14 +61,14 @@ $pageTitle = 'ImobiHub — Catálogo de Imóveis';
 
           <label>
             Busca
-            <input type="text" name="q" placeholder="Cidade, bairro, descri&ccedil;&atilde;o&hellip;">
+            <input type="text" name="q" placeholder="Cidade, bairro, descrição…">
           </label>
 
           <label>
-            Ordena&ccedil;&atilde;o
+            Ordenação
             <div class="select-wrap">
               <select name="sort">
-                <option value="default">Padr&atilde;o</option>
+                <option value="default">Padrão</option>
                 <option value="latest">Mais recentes</option>
                 <option value="affordable">Mais baratos</option>
               </select>
@@ -99,22 +92,24 @@ $pageTitle = 'ImobiHub — Catálogo de Imóveis';
 
     <div class="result-header">
       <h2 id="result-count">Resultados (0)</h2>
+      <p id="result-filter"></p>
     </div>
 
     <section id="cards" class="cards"></section>
 
     <section id="empty-state" class="panel empty-state" hidden>
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;color:#94A3B8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <h3>Nenhum im&oacute;vel encontrado</h3>
+      <h3>Nenhum imóvel encontrado</h3>
       <p>Tente ajustar os filtros para encontrar o que procura.</p>
     </section>
 
   </main>
 
   <footer class="page-footer">
-    &copy; <?= date('Y') ?> ImobiHub &mdash; Conectando Im&oacute;veis &amp; Neg&oacute;cios
+    © 2025 ImobiHub — Conectando Imóveis &amp; Negócios
   </footer>
 
   <script type="module" src="/assets/js/catalog.js"></script>
 </body>
+</html>
 </html>
